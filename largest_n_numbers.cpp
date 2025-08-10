@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 using namespace std;
 
 int main()
@@ -13,7 +14,7 @@ int main()
     int num, largest;
     cout << "Enter number 1: ";
     cin >> num;
-    largest = num;
+    largest = INT_MIN;
 
     for (int i = 1; i < n; i++)
     {
