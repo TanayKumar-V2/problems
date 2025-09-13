@@ -1,13 +1,24 @@
 #include<iostream>
 using namespace std;
 
-void update(int &x){
+//call by value concept
+
+void update(int x){
+    x=x+1;
+}
+
+//call by reference
+
+void update1(int &x){
     x=x+1;
 }
 
 int main(){
     int a=1;
-    cout<<a<<endl;
+    cout<<"Before Update: "<<a<<endl;
     update(a);
-    cout<<a<<endl;
+    cout<<"After Update: "<<a<<endl;
+    update1(a);
+    cout<<"After Call by reference update: "<<a<<endl;
+    return 0;
 }
