@@ -10,7 +10,7 @@ int main()
 
     while (i <= f)
     {
-        cout << i << " : " << ((5 / 9.0) * (i - 32));
+        cout << i << " - " << ((5 / 9.0) * (i - 32));
         i = i + step;
         cout << endl;
     }
