@@ -14,6 +14,17 @@ public:
     }
 };
 
+int lengthLL(node *head)
+{
+    int ans = 0;
+    while (head != NULL)
+    {
+        ans++;
+        head = head->next;
+    }
+    return ans;
+}
+
 void insertAtEnd(node *&head, node *&tail, int data)
 {
     if (head == NULL)
@@ -56,6 +67,52 @@ void deleteAtFront(node *&head, node *&tail)
     }
 }
 
+void deletionAtEnd(node *&head, node *&tail)
+{
+    if (head == NULL)
+    {
+        return;
+    }
+    else if (head->next == NULL)
+    {
+        delete head;
+        head = tail = NULL;
+    }
+    else
+    {
+        node *t = head;
+        while (t->next != tail)
+        {
+            t = t->next;
+        }
+        delete tail;
+        t->next = NULL;
+        tail = t;
+    }
+}
+
+void deleteAtMid(node *&head, node *&tail, int pos)
+{
+    if (pos == 0)
+    {
+        deleteAtFront(head, tail);
+    }
+    else if (pos >= lengthLL(head) - 1)
+    {
+        deletionAtEnd(head, tail);
+    }
+    else
+    {
+        node *t = head;
+        for (int i = 0; i < pos - 1; i++)
+        {
+            t = t->next;
+        }
+        node *n = t->next;
+        t->next = n->next;
+        delete n;
+    }
+}
 
 int main()
 {
@@ -67,10 +124,18 @@ int main()
     insertAtEnd(head, tail, 3);
     insertAtEnd(head, tail, 4);
     insertAtEnd(head, tail, 5);
+    insertAtEnd(head, tail, 6);
+    insertAtEnd(head, tail, 7);
     cout << "Before Deletion: ";
     printLL(head);
     deleteAtFront(head, tail);
     cout << "After Deletion: ";
+    printLL(head);
+    deletionAtEnd(head, tail);
+    cout << "After deletion at end: ";
+    printLL(head);
+    deleteAtMid(head, tail, 3);
+    cout << "After deleting 3rd pos: ";
     printLL(head);
     return 0;
 }
